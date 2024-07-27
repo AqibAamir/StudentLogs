@@ -103,3 +103,22 @@ def add_student_score(name, score, filename='scores.txt'):
         print(f"Score for student '{name}' has been added.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def view_student_score(name, filename='scores.txt'):
+    try:
+        with open(filename, 'r') as file:
+            scores = file.readlines()
+        
+        found = False
+        for entry in scores:
+            student, score = entry.strip().split(': ')
+            if student == name:
+                print(f"{name}'s score: {score}")
+                found = True
+                break
+        
+        if not found:
+            print(f"No score found for student '{name}'.")
+    
+    except FileNotFoundError:
+        print(f"The file {filename} does not exist.")
