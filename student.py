@@ -35,3 +35,23 @@ if choice=="1":
 elif choice=="2":
     new_student_name = input("Enter the new student's name to add: ")
     add_student(new_student_name)
+def update_student(old_name, new_name, filename='students.txt'):
+    try:
+        with open(filename, 'r') as file:
+            students = file.readlines()
+        
+        students = [student.strip() for student in students]
+        
+        if old_name in students:
+            with open(filename, 'w') as file:
+                for student in students:
+                    if student == old_name:
+                        file.write(new_name + '\n')
+                    else:
+                        file.write(student + '\n')
+            print(f"Student '{old_name}' has been updated to '{new_name}'.")
+        else:
+            print(f"Student '{old_name}' not found.")
+    
+    except FileNotFoundError:
+        print(f"The file {filename} does not exist.")
