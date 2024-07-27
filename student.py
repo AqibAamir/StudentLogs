@@ -95,3 +95,11 @@ elif choice == "4":
 elif choice == "5":
     student_name = input("Enter the student's name to delete: ")
     delete_student(student_name)
+
+def add_student_score(name, score, filename='scores.txt'):
+    try:
+        with open(filename, 'a') as file:
+            file.write(f"{name}: {score}\n")
+        print(f"Score for student '{name}' has been added.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
