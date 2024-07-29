@@ -140,3 +140,18 @@ def update_student_score(name, new_score, filename='scores.txt'):
     
     except FileNotFoundError:
         print(f"The file {filename} does not exist.")
+
+ef delete_student_score(name, filename='scores.txt'):
+    try:
+        with open(filename, 'r') as file:
+            scores = file.readlines()
+        
+        with open(filename, 'w') as file:
+            for entry in scores:
+                student, score = entry.strip().split(': ')
+                if student != name:
+                    file.write(entry)
+        print(f"Score for student '{name}' has been deleted.")
+    
+    except FileNotFoundError:
+        print(f"The file {filename} does not exist.")
